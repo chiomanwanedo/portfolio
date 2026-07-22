@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chioma Egwuibe — Cloud & DevOps Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:        #0d0f14;
+    --bg2:       #13161e;
+    --bg3:       #1a1e2a;
+    --border:    #252a38;
+    --text:      #e8eaf0;
+    --muted:     #7a8099;
+    --accent:    #4fffb0;
+    --accent2:   #3dd6f5;
+    --mono:      'JetBrains Mono', monospace;
+    --sans:      'Inter', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(13,15,20,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px;
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 13px; color: var(--muted);
+    text-decoration: none; letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* SECTIONS */
+  section { padding: 6rem 0; }
+  .container { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding-top: 56px;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(78,255,176,0.06) 0%, transparent 70%);
+  }
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 1.25rem;
+  }
+  .hero-name {
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+  .hero-name span { color: var(--accent); }
+  .hero-tagline {
+    font-size: 1.15rem;
+    color: var(--muted);
+    max-width: 560px;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+  .hero-stack {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--muted);
+    background: var(--bg2);
+    letter-spacing: 0.04em;
+  }
+  .tag.cert {
+    border-color: rgba(78,255,176,0.3);
+    color: var(--accent);
+    background: rgba(78,255,176,0.05);
+  }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 13px; font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #0d0f14;
+    border: none;
+  }
+  .btn-primary:hover { background: #6fffbe; }
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-outline:hover { border-color: var(--muted); }
+
+  /* SECTION HEADING */
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+  .section-line {
+    width: 40px; height: 2px;
+    background: var(--accent);
+    margin-bottom: 3rem;
+  }
+
+  /* ABOUT */
+  #about { background: var(--bg2); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .about-text p { color: var(--muted); margin-bottom: 1rem; font-size: 15px; }
+  .about-text p strong { color: var(--text); font-weight: 500; }
+  .about-facts { display: flex; flex-direction: column; gap: 1rem; }
+  .fact-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+  }
+  .fact-label { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 4px; }
+  .fact-value { font-size: 14px; color: var(--text); font-weight: 500; }
+
+  /* PROJECTS */
+  .projects-grid { display: flex; flex-direction: column; gap: 1.5rem; }
+  .project-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.75rem;
+    transition: border-color 0.2s;
+  }
+  .project-card:hover { border-color: rgba(78,255,176,0.3); }
+  .project-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 0.75rem; }
+  .project-title { font-size: 1rem; font-weight: 600; }
+  .project-links { display: flex; gap: 0.5rem; flex-shrink: 0; }
+  .project-link {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 3px 10px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .project-link:hover { border-color: var(--accent); color: var(--accent); }
+  .project-desc { font-size: 14px; color: var(--muted); margin-bottom: 1rem; line-height: 1.6; }
+  .project-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .project-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 3px 8px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    color: var(--accent2);
+    letter-spacing: 0.03em;
+  }
+  .project-highlight {
+    border-left: 2px solid var(--accent);
+    padding-left: 0.75rem;
+    margin: 0.75rem 0;
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* SKILLS */
+  #skills { background: var(--bg2); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem;
+  }
+  .skill-group {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.25rem;
+  }
+  .skill-group-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.75rem;
+  }
+  .skill-list { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .skill-pill {
+    font-size: 12px;
+    padding: 3px 8px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--muted);
+  }
+
+  /* CERTIFICATIONS */
+  .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+  .cert-card {
+    background: var(--bg2);
+    border: 1px solid rgba(78,255,176,0.2);
+    border-radius: 6px;
+    padding: 1.25rem 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .cert-icon {
+    width: 40px; height: 40px;
+    background: rgba(78,255,176,0.08);
+    border: 1px solid rgba(78,255,176,0.2);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 11px; color: var(--accent);
+    flex-shrink: 0;
+  }
+  .cert-name { font-size: 14px; font-weight: 500; }
+  .cert-status { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .cert-status.active { color: var(--accent); }
+
+  /* CONTACT */
+  #contact { text-align: center; }
+  #contact .section-line { margin: 0 auto 3rem; }
+  .contact-intro { color: var(--muted); max-width: 480px; margin: 0 auto 2.5rem; font-size: 15px; }
+  .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .project-header { flex-direction: column; }
+  }
+
+  /* SCROLL FADE IN */
+  .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fade-in { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">chioma.dev</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <p class="hero-eyebrow">// cloud & devops engineer</p>
+    <h1 class="hero-name">Chioma<br><span>Egwuibe</span></h1>
+    <p class="hero-tagline">I build, automate and monitor cloud-native infrastructure — and document everything so others can too.</p>
+    <div class="hero-stack">
+      <span class="tag cert">AWS SAA Certified</span>
+      <span class="tag">Terraform</span>
+      <span class="tag">Kubernetes</span>
+      <span class="tag">GitHub Actions</span>
+      <span class="tag">ArgoCD</span>
+      <span class="tag">Docker</span>
+      <span class="tag">Prometheus</span>
+      <span class="tag">Grafana</span>
+    </div>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#projects">View projects</a>
+      <a class="btn btn-outline" href="https://github.com/chiomanwanedo" target="_blank">GitHub</a>
+      <a class="btn btn-outline" href="https://www.linkedin.com/in/chioma-egwuibe" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <p class="section-label">01 — about</p>
+    <h2 class="section-title">A bit about me</h2>
+    <div class="section-line"></div>
+    <div class="about-grid">
+      <div class="about-text fade-in">
+        <p>I am a Cloud & DevOps Engineer based in the UK, with hands-on experience designing and automating cloud-native infrastructure across <strong>AWS and Azure</strong>. I hold the AWS Certified Solutions Architect – Associate certification.</p>
+        <p>My path into tech was not conventional — I made a deliberate career change and built my skills entirely through real projects: production-style deployments, CI/CD pipelines, GitOps workflows, and observability stacks. I also facilitate <strong>Kubernetes and cloud labs</strong> for junior engineers, which has sharpened how I think about documentation, communication, and building things that others can understand and maintain.</p>
+        <p>I care about infrastructure that is reliable, repeatable, and well-documented — not just infrastructure that works today.</p>
+      </div>
+      <div class="about-facts fade-in">
+        <div class="fact-card">
+          <div class="fact-label">LOCATION</div>
+          <div class="fact-value">Hertfordshire, UK — Remote-first</div>
+        </div>
+        <div class="fact-card">
+          <div class="fact-label">RIGHT TO WORK</div>
+          <div class="fact-value">UK — no sponsorship required</div>
+        </div>
+        <div class="fact-card">
+          <div class="fact-label">TARGET ROLES</div>
+          <div class="fact-value">DevOps Engineer · Cloud Engineer · Infrastructure Engineer · Platform Engineer · SRE · DevSecOps Engineer · GitOps Engineer · Solutions Architect</div>
+        </div>
+        <div class="fact-card">
+          <div class="fact-label">CURRENTLY</div>
+          <div class="fact-value">Open to remote opportunities</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <p class="section-label">02 — projects</p>
+    <h2 class="section-title">What I Have Built</h2>
+    <div class="section-line"></div>
+    <div class="projects-grid">
+
+      <div class="project-card fade-in">
+        <div class="project-header">
+          <h3 class="project-title">AWS Three-Tier Production Infrastructure</h3>
+          <div class="project-links">
+            <a class="project-link" href="https://github.com/chiomanwanedo/aws-three-tier-terraform" target="_blank">GitHub →</a>
+          </div>
+        </div>
+        <p class="project-desc">A full production-style AWS three-tier architecture built entirely with Terraform. Covers networking, containerised application layer, managed database, caching, security, CI/CD, and full observability — designed to mirror what a real engineering team would deploy and maintain.</p>
+        <div class="project-highlight">Includes two break/fix scenarios: Aurora security group misconfiguration caught by a deep health check (SELECT 1 + redis_client.ping()), and an ECS task failing to start — both documented with root cause analysis.</div>
+        <div class="project-stack">
+          <span class="project-tag">Terraform</span>
+          <span class="project-tag">ECS Fargate</span>
+          <span class="project-tag">Aurora PostgreSQL</span>
+          <span class="project-tag">ElastiCache Redis</span>
+          <span class="project-tag">ALB + HTTPS/ACM</span>
+          <span class="project-tag">Cloudflare WAF</span>
+          <span class="project-tag">GitHub Actions</span>
+          <span class="project-tag">CloudWatch</span>
+          <span class="project-tag">Grafana Cloud</span>
+          <span class="project-tag">Secrets Manager</span>
+          <span class="project-tag">SNS</span>
+          <span class="project-tag">ECR</span>
+        </div>
+      </div>
+
+      <div class="project-card fade-in">
+        <div class="project-header">
+          <h3 class="project-title">Azure AKS CI/CD & GitOps Pipeline</h3>
+          <div class="project-links">
+            <a class="project-link" href="https://github.com/chiomanwanedo" target="_blank">GitHub →</a>
+          </div>
+        </div>
+        <p class="project-desc">End-to-end delivery pipeline from GitHub source commit to live AKS deployment. Azure DevOps handles CI — building, tagging and pushing Docker images to ACR — while ArgoCD manages CD via auto-sync, keeping build and deployment concerns cleanly separated.</p>
+        <div class="project-highlight">Validated live updates by changing the app version and confirming automatic rollout without manual kubectl steps.</div>
+        <div class="project-stack">
+          <span class="project-tag">Azure DevOps</span>
+          <span class="project-tag">AKS</span>
+          <span class="project-tag">ACR</span>
+          <span class="project-tag">ArgoCD</span>
+          <span class="project-tag">Docker</span>
+          <span class="project-tag">Kubernetes</span>
+          <span class="project-tag">Helm</span>
+          <span class="project-tag">Terraform</span>
+        </div>
+      </div>
+
+      <div class="project-card fade-in">
+        <div class="project-header">
+          <h3 class="project-title">AWS EKS Hotstar Clone DevOps Pipeline</h3>
+          <div class="project-links">
+            <a class="project-link" href="https://github.com/chiomanwanedo" target="_blank">GitHub →</a>
+          </div>
+        </div>
+        <p class="project-desc">Full DevOps pipeline for a streaming platform clone — from infrastructure provisioning to deployment, security scanning, and monitoring. Jenkins pipeline triggered by GitHub webhooks runs quality checks, builds, scans, pushes to registry, patches manifests and hands off to ArgoCD.</p>
+        <div class="project-stack">
+          <span class="project-tag">Terraform</span>
+          <span class="project-tag">EKS</span>
+          <span class="project-tag">Jenkins</span>
+          <span class="project-tag">ECR</span>
+          <span class="project-tag">ArgoCD</span>
+          <span class="project-tag">SonarQube</span>
+          <span class="project-tag">Trivy</span>
+          <span class="project-tag">Prometheus</span>
+          <span class="project-tag">Grafana</span>
+          <span class="project-tag">Blackbox Exporter</span>
+        </div>
+      </div>
+
+      <div class="project-card fade-in">
+        <div class="project-header">
+          <h3 class="project-title">AWS ECS Application Deployment</h3>
+          <div class="project-links">
+            <a class="project-link" href="https://github.com/chiomanwanedo" target="_blank">GitHub →</a>
+          </div>
+        </div>
+        <p class="project-desc">Containerised web application deployed as an ECS service on EC2 launch type, with ALB routing, target group health checks, and IAM execution roles. Resolved real deployment issues including port mismatch and unhealthy target checks — documented with cleanup steps to avoid ongoing AWS charges.</p>
+        <div class="project-stack">
+          <span class="project-tag">ECS EC2</span>
+          <span class="project-tag">ECR</span>
+          <span class="project-tag">ALB</span>
+          <span class="project-tag">IAM</span>
+          <span class="project-tag">CloudWatch</span>
+          <span class="project-tag">Docker</span>
+        </div>
+      </div>
+
+      <div class="project-card fade-in">
+        <div class="project-header">
+          <h3 class="project-title">AWS Native CI/CD — Full-Stack Application</h3>
+          <div class="project-links">
+            <a class="project-link" href="https://github.com/chiomanwanedo" target="_blank">GitHub →</a>
+          </div>
+        </div>
+        <p class="project-desc">AWS-native CI/CD pipeline for a React frontend, Node.js backend and MySQL database. CodePipeline orchestrates end-to-end delivery, with CodeDeploy appspec hooks handling artefact copying, dependency installation, and Nginx/PM2 restarts on EC2.</p>
+        <div class="project-stack">
+          <span class="project-tag">CodePipeline</span>
+          <span class="project-tag">CodeBuild</span>
+          <span class="project-tag">CodeDeploy</span>
+          <span class="project-tag">EC2</span>
+          <span class="project-tag">React</span>
+          <span class="project-tag">Node.js</span>
+          <span class="project-tag">MySQL</span>
+          <span class="project-tag">Nginx</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <p class="section-label">03 — skills</p>
+    <h2 class="section-title">Tech stack</h2>
+    <div class="section-line"></div>
+    <div class="skills-grid fade-in">
+      <div class="skill-group">
+        <div class="skill-group-title">CLOUD</div>
+        <div class="skill-list">
+          <span class="skill-pill">AWS</span>
+          <span class="skill-pill">EC2</span>
+          <span class="skill-pill">S3</span>
+          <span class="skill-pill">RDS</span>
+          <span class="skill-pill">VPC</span>
+          <span class="skill-pill">IAM</span>
+          <span class="skill-pill">Lambda</span>
+          <span class="skill-pill">ECS</span>
+          <span class="skill-pill">EKS</span>
+          <span class="skill-pill">ECR</span>
+          <span class="skill-pill">ALB</span>
+          <span class="skill-pill">CloudWatch</span>
+          <span class="skill-pill">Azure</span>
+          <span class="skill-pill">AKS</span>
+          <span class="skill-pill">ACR</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">IaC & AUTOMATION</div>
+        <div class="skill-list">
+          <span class="skill-pill">Terraform</span>
+          <span class="skill-pill">Ansible</span>
+          <span class="skill-pill">CloudFormation</span>
+          <span class="skill-pill">Bash</span>
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">Boto3</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">CI/CD & GITOPS</div>
+        <div class="skill-list">
+          <span class="skill-pill">GitHub Actions</span>
+          <span class="skill-pill">GitLab CI</span>
+          <span class="skill-pill">Jenkins</span>
+          <span class="skill-pill">Azure Pipelines</span>
+          <span class="skill-pill">CodePipeline</span>
+          <span class="skill-pill">ArgoCD</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">CONTAINERS & ORCHESTRATION</div>
+        <div class="skill-list">
+          <span class="skill-pill">Docker</span>
+          <span class="skill-pill">Kubernetes</span>
+          <span class="skill-pill">Helm</span>
+          <span class="skill-pill">K3s</span>
+          <span class="skill-pill">Minikube</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">MONITORING & SECURITY</div>
+        <div class="skill-list">
+          <span class="skill-pill">Prometheus</span>
+          <span class="skill-pill">Grafana</span>
+          <span class="skill-pill">Blackbox Exporter</span>
+          <span class="skill-pill">CloudWatch</span>
+          <span class="skill-pill">Trivy</span>
+          <span class="skill-pill">SonarQube</span>
+          <span class="skill-pill">Cloudflare WAF</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">NETWORKING & OTHER</div>
+        <div class="skill-list">
+          <span class="skill-pill">VPC / Subnets</span>
+          <span class="skill-pill">Route 53</span>
+          <span class="skill-pill">DNS</span>
+          <span class="skill-pill">Linux</span>
+          <span class="skill-pill">Nginx</span>
+          <span class="skill-pill">Git</span>
+          <span class="skill-pill">MySQL</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 3rem;">
+      <p class="section-label">certifications</p>
+      <div class="cert-grid fade-in">
+        <div class="cert-card">
+          <div class="cert-icon">AWS</div>
+          <div>
+            <div class="cert-name">AWS Solutions Architect – Associate</div>
+            <div class="cert-status active">✓ Certified 2025</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <p class="section-label">04 — contact</p>
+    <h2 class="section-title">Let's talk</h2>
+    <div class="section-line"></div>
+    <p class="contact-intro">I am currently open to remote Cloud and DevOps roles. If you are hiring or want to connect, I would love to hear from you.</p>
+    <div class="contact-links">
+      <a class="btn btn-primary" href="mailto:chiomaegwuibe@gmail.com">Email me</a>
+      <a class="btn btn-outline" href="https://www.linkedin.com/in/chioma-egwuibe" target="_blank">LinkedIn</a>
+      <a class="btn btn-outline" href="https://github.com/chiomanwanedo" target="_blank">GitHub</a>
+      <a class="btn btn-outline" href="https://medium.com/@chiomavanessa8" target="_blank">Medium</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Built and deployed by Chioma Egwuibe &nbsp;·&nbsp; devopsbychioma.co.uk</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
